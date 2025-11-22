@@ -1,0 +1,41 @@
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
+import Dashboard from './Dashboard';
+
+export default function Hero() {
+  return (
+    <section className="relative overflow-hidden pt-16 md:pt-24 pb-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+        <div className="mb-8 inline-flex items-center rounded-full border border-indigo-100 bg-indigo-50/50 px-3 py-1 text-xs font-medium text-indigo-600 transition-colors hover:bg-indigo-100/50 cursor-default">
+          <span className="mr-2 flex h-2 w-2">
+            <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-indigo-400 opacity-75"></span>
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-indigo-500"></span>
+          </span>
+          New: AI-Powered Tagging
+        </div>
+
+        <h1 className="max-w-4xl text-5xl font-bold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl mb-6">
+          Capture <span className="text-indigo-600">Everything</span>,<br className="hidden sm:block" />
+          Forget Nothing
+        </h1>
+
+        <p className="max-w-2xl text-lg text-slate-500 sm:text-xl mb-10 leading-relaxed">
+          The ultimate tool for dumping interesting URLs, resources, and content. 
+          Your digital second brain, now with intelligent organization.
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center gap-4 mb-24 w-full sm:w-auto">
+          <button className="group flex h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-slate-950 px-8 text-sm font-medium text-white transition-all hover:bg-slate-800 hover:shadow-lg hover:shadow-slate-900/20">
+            Get Started Free
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </button>
+          <button className="flex h-12 w-full sm:w-auto items-center justify-center rounded-full bg-white px-8 text-sm font-medium text-slate-600 shadow-sm ring-1 ring-slate-200 transition-all hover:bg-slate-50 hover:text-slate-900">
+            View Demo
+          </button>
+        </div>
+
+        <Dashboard />
+      </div>
+    </section>
+  );
+}
