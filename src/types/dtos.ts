@@ -1,19 +1,25 @@
 
-export interface UserResponseDTO {
-  id: number;
+export interface SignupRequestDTO {
   username: string;
+  email: string;
+  password: string;
 }
 
-export interface UserRequestDTO {
+export interface LoginRequestDTO {
   username: string;
   password: string;
 }
 
-export interface AuthResponseDTO {
+export interface AuthRequestDTO{
   token: string;
   username: string;
-  email: string;
-  message: string;
+  password: string;
+  message: string; //success/fail msg
+}
+
+export interface UserResponseDTO {
+  id: string;
+  username: string;
 }
 
 export interface TagResponseDTO {
@@ -39,7 +45,7 @@ export interface LinkRequestDTO {
 export interface ContentResponseDTO {
   id: number;
   title: string;
-  type: string;     
+  type: 'article' | 'video' | 'tweet' | 'image' | 'other';  
   link: string;
   userId: number;
   username: string;
@@ -48,7 +54,7 @@ export interface ContentResponseDTO {
 
 export interface ContentRequestDTO {
   title: string;
-  type: string;
+  type: 'article' | 'video' | 'tweet' | 'image' | 'other';  
   link: string;
   userId?: number; 
   tagIds?: number[]; 
@@ -57,4 +63,17 @@ export interface ContentRequestDTO {
 export interface PocketDTO {
   username: string;
   content: ContentResponseDTO[];
+}
+
+export type ContentType = 'article' | 'video' | 'tweet' | 'image' | 'other';
+
+export interface ApiErrorResponse {
+  message: string;
+  details?: string;
+  [key: string]: string | undefined;
+}
+
+export interface ShareLinkResponse {
+  link?: string;        
+  message?: string;    // "Sharing disabled" if share=false
 }

@@ -4,7 +4,7 @@ import Features from "../components/Landing/Features";
 
 export default function Landing() {
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
+    <div className="min-h-screen bg-[#FAFAF9] font-sans text-stone-900 selection:bg-orange-100 selection:text-orange-900">     
       <main>
         <Hero />
         <Features />

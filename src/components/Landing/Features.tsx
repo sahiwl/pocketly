@@ -13,8 +13,8 @@ export default function Features() {
           />
           <FeatureCard 
             icon={<Sparkles className="h-5 w-5" />}
-            title="AI Summaries"
-            description="Don't have time to read? Get a 3-bullet summary of any article instantly."
+            title="Smart Organization"
+            description="Automatically tag and categorize your saved content for effortless organization."
           />
           <FeatureCard 
             icon={<Search className="h-5 w-5" />}
@@ -26,15 +26,14 @@ export default function Features() {
     </section>
   );
 }
-
 function FeatureCard({ icon, title, description }: any) {
   return (
-    <div className="group rounded-2xl border border-slate-100 bg-white p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-1 hover:shadow-[0_8px_16px_rgba(0,0,0,0.06)]">
-      <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-100 bg-slate-50 text-slate-900 transition-colors group-hover:border-indigo-100 group-hover:bg-indigo-50 group-hover:text-indigo-600">
+    <div className="group rounded-2xl border border-stone-100 bg-white p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-1 hover:shadow-[0_8px_16px_rgba(0,0,0,0.06)]">
+      <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-stone-100 bg-stone-50 text-stone-900 transition-colors group-hover:border-orange-100 group-hover:bg-orange-50 group-hover:text-orange-600">
         {icon}
       </div>
-      <h3 className="mb-2 text-lg font-bold text-slate-900">{title}</h3>
-      <p className="text-sm leading-relaxed text-slate-500">{description}</p>
+      <h3 className="mb-2 text-lg font-bold text-stone-900">{title}</h3>
+      <p className="text-sm leading-relaxed text-stone-500">{description}</p>
     </div>
   );
 }
