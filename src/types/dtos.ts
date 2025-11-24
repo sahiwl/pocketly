@@ -1,4 +1,3 @@
-
 export interface SignupRequestDTO {
   username: string;
   email: string;
@@ -6,19 +5,20 @@ export interface SignupRequestDTO {
 }
 
 export interface LoginRequestDTO {
-  username: string;
+  usernameOrEmail: string;
   password: string;
 }
 
-export interface AuthRequestDTO{
+export interface AuthResponseDTO {
   token: string;
   username: string;
   password: string;
   message: string; //success/fail msg
 }
 
+//getallusers
 export interface UserResponseDTO {
-  id: string;
+  id: number;
   username: string;
 }
 
@@ -45,19 +45,19 @@ export interface LinkRequestDTO {
 export interface ContentResponseDTO {
   id: number;
   title: string;
-  type: 'article' | 'video' | 'tweet' | 'image' | 'other';  
+  type: "article" | "video" | "tweet" | "image" | "other";
   link: string;
   userId: number;
   username: string;
-  tags: string[];   
+  tags: string[];
 }
 
 export interface ContentRequestDTO {
   title: string;
-  type: 'article' | 'video' | 'tweet' | 'image' | 'other';  
+  type: "article" | "video" | "tweet" | "image" | "other";
   link: string;
-  userId?: number; 
-  tagIds?: number[]; 
+  userId?: number;
+  tagIds?: number[];
 }
 
 export interface PocketDTO {
@@ -65,7 +65,7 @@ export interface PocketDTO {
   content: ContentResponseDTO[];
 }
 
-export type ContentType = 'article' | 'video' | 'tweet' | 'image' | 'other';
+export type ContentType = "article" | "video" | "tweet" | "image" | "other";
 
 export interface ApiErrorResponse {
   message: string;
@@ -74,6 +74,6 @@ export interface ApiErrorResponse {
 }
 
 export interface ShareLinkResponse {
-  link?: string;        
-  message?: string;    // "Sharing disabled" if share=false
+  link?: string;
+  message?: string; // "Sharing disabled" if share=false
 }

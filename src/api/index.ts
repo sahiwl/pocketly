@@ -1,11 +1,30 @@
 import axios from "axios";
-import type { ContentRequestDTO, ContentResponseDTO, LinkRequestDTO, LinkResponseDTO, TagRequestDTO, TagResponseDTO } from "../types/dtos";
+import type { AuthResponseDTO, ContentRequestDTO, ContentResponseDTO, LinkRequestDTO, LinkResponseDTO, LoginRequestDTO, SignupRequestDTO, TagRequestDTO, TagResponseDTO, UserResponseDTO } from "../types/dtos";
 
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE || "http://localhost:8080",
   withCredentials: true
 })
+
+export const loginApi = async (payload: LoginRequestDTO): Promise<AuthResponseDTO> =>{
+  const r = await api.post<AuthResponseDTO>('/api/auth/signin', payload);
+  return r.data;
+}
+
+export const signupApi = async (payload: SignupRequestDTO): Promise<AuthResponseDTO> =>{
+  const r = await api.post<AuthResponseDTO>('/api/auth/signup', payload);
+  return r.data;
+}
+
+export const logoutApi = async (): Promise<void> =>{
+  await api.post('/api/auth/logout');
+}
+
+export const currUser = async () : Promise<UserResponseDTO> =>{
+  const r = await api.get<UserResponseDTO>("/api/auth/me");
+  return r.data;
+}
 
 export const getAllLinks = async () : Promise<LinkResponseDTO[]> =>{
   const resp = await api.get('/api/');

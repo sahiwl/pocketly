@@ -6,8 +6,10 @@ import Health from "./pages/Health";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Landing from "./pages/Landing";
-import { Signin } from "./pages/Signin";
+import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Temp } from "./pages/Temp";
 
 function App() {
   return (
@@ -16,10 +18,11 @@ function App() {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Landing />}></Route>
-          <Route path="/signin" element={<Signin />}></Route>
+          <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup /> }></Route>
-          <Route path="/dash" element={<Dash />}></Route>
           <Route path="/health" element={<Health />}></Route>
+          <Route path="/temp" element={<Temp />}></Route>
+          <Route path="/dash" element={<ProtectedRoute> <Dash /> </ProtectedRoute>}></Route>
         </Routes>
       </main>
       <Footer />
