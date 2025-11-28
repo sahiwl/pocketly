@@ -1,7 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router";
-// import Homepage from "./components/Home";
-import Dash from "./pages/Dash";
+import Dash from "./pages/dash";
 import Health from "./pages/Health";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
@@ -10,24 +9,74 @@ import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Temp } from "./pages/Temp";
+import { DashboardLayout } from "./components/DashboardLayout";
 
 function App() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <Navbar />
-      <main className="flex-1">
-        <Routes>
-          <Route path="/" element={<Landing />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/signup" element={<Signup /> }></Route>
-          <Route path="/health" element={<Health />}></Route>
-          <Route path="/temp" element={<Temp />}></Route>
-          <Route path="/dash" element={<ProtectedRoute> <Dash /> </ProtectedRoute>}></Route>
-        </Routes>
-      </main>
-      <Footer />
-      {/* <p className='flex justify-center  text-amber-600'>in works</p> */}
-    </div>
+    <Routes>
+      <Route path="/" element={
+          <div className="flex min-h-screen flex-col">
+            <Navbar />
+            <main className="flex-1">
+              <Landing />
+            </main>
+            <Footer />
+          </div>
+        }
+      />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/health" element={<Health />} />
+
+      <Route path="/dash" element={ 
+        <ProtectedRoute>
+            <DashboardLayout>
+              <Dash />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/temp"
+        element={
+          <ProtectedRoute>
+            <DashboardLayout>
+              <Temp />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/favorites"
+        element={
+          <ProtectedRoute>
+            <DashboardLayout>
+              <Dash />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/read-later"
+        element={
+          <ProtectedRoute>
+            <DashboardLayout>
+              <Dash />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/tags/:tag"
+        element={
+          <ProtectedRoute>
+            <DashboardLayout>
+              <Dash />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
   );
 }
 

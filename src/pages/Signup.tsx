@@ -38,7 +38,6 @@ export function Signup() {
       navigate("/dash");
     } catch (error) {
       console.error("Signup failed:", error);
-      // Error is already handled in the UI via signupStatus
     }
   };
 

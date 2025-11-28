@@ -36,22 +36,17 @@ export const bestatus = async() : Promise<unknown> =>{
   return resp.data;
 }
 
-export const getUserLink = async(id :number) : Promise<LinkRequestDTO[]> =>{
-  const resp = await api.get(`/api/links/${id}`);
+export const getUserPocket = async(id :number) : Promise<LinkRequestDTO[]> =>{
+  const resp = await api.get(`/api/pocket/${id}`);
   return resp.data;
 }
 
-export const createLink = async (payload: Partial<LinkRequestDTO>): Promise<LinkResponseDTO> =>{
-  const resp = await api.post('/api/links', payload);
+export const createPocket = async (): Promise<LinkResponseDTO> =>{
+  const resp = await api.post('/api/pocket/share');
   return resp.data;
 }
 
-export const deleteLink = async(id: number): Promise<void> =>{
-  const resp = await api.delete(`/api/links/${id}`);
-  return resp.data;
-}
-
-export const getContents = async (): Promise<ContentResponseDTO[]> => {
+export const getUserContent = async (): Promise<ContentResponseDTO[]> => {
   const resp = await api.get<ContentResponseDTO[]>('/api/content')
   return resp.data
 }
@@ -61,9 +56,30 @@ export const createContent = async (payload: ContentRequestDTO): Promise<Content
   return resp.data
 }
 
+export const updateContent = async (contentId: number, payload: ContentRequestDTO): Promise<ContentResponseDTO> => {
+  const resp = await api.put<ContentResponseDTO>(`/api/content/${contentId}`, payload)
+  return resp.data
+}
+
+
+export const deleteContent = async(contentId: number) : Promise<{ message: string }> =>{
+  const resp = await api.delete<{ message: string }>(`/api/content/${contentId}`);
+  return resp.data;
+}
+
 export const createTag = async (payload: TagRequestDTO): Promise<TagResponseDTO> => {
   const resp = await api.post<TagResponseDTO>('/api/tags', payload)
   return resp.data
+}
+
+export const deleteTag = async (tagId: number): Promise<{message: string}> => {
+  const resp = await api.delete<{message: string}>(`/api/tags/${tagId}`)
+  return resp.data
+}
+
+export const getAllTags = async() : Promise<TagResponseDTO> => {
+  const resp = await api.get<TagResponseDTO>(`/api/tags`);
+  return resp.data;
 }
 
 export default api;
