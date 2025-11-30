@@ -28,7 +28,7 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/health" element={<Health />} />
 
-      <Route path="/dash" element={ 
+      <Route path="/dashboard" element={ 
         <ProtectedRoute>
             <DashboardLayout>
               <Dash />

@@ -45,7 +45,7 @@ export interface LinkRequestDTO {
 export interface ContentResponseDTO {
   id: number;
   title: string;
-  type: "article" | "video" | "tweet" | "image" | "other";
+  type: ContentType;
   link: string;
   userId: number;
   username: string;
@@ -65,7 +65,14 @@ export interface PocketDTO {
   content: ContentResponseDTO[];
 }
 
-export type ContentType = "youtube" | "linkedin" | "tweet" | "pinterest" | "facebook" | "instagram" | "other";
+export type ContentType =
+  | "youtube"
+  | "linkedin"
+  | "tweet"
+  | "pinterest"
+  | "facebook"
+  | "instagram"
+  | "other";
 
 export interface ApiErrorResponse {
   message: string;
