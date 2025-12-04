@@ -43,7 +43,7 @@ export default function Navbar() {
           {user ? (
             <>
               <Link
-                to="/dash"
+                to="/dashboard"
                 className="hover:text-stone-900 transition-colors"
               >
                 Dashboard
@@ -119,7 +119,7 @@ export default function Navbar() {
           <div className="flex flex-col gap-4 text-sm font-medium text-stone-600">
             {user ? (
               <>
-                <Link to="/dash" className="block hover:text-stone-900">
+                <Link to="/dashboard" className="block hover:text-stone-900">
                   Dashboard
                 </Link>
                 <Link to="/temp" className="block hover:text-stone-900">

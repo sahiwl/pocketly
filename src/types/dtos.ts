@@ -55,6 +55,7 @@ export interface ContentResponseDTO {
 export interface ContentRequestDTO {
   title: string;
   type: ContentType;
+  description: string;
   link: string;
   userId?: number;
   tagIds?: number[];
