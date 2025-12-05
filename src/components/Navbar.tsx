@@ -48,12 +48,6 @@ export default function Navbar() {
               >
                 Dashboard
               </Link>
-              <Link
-                to="/temp"
-                className="hover:text-stone-900 transition-colors"
-              >
-                Content
-              </Link>
               <div className="h-4 w-px bg-stone-200"></div>
 
               {/* User Dropdown */}

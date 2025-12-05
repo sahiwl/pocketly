@@ -27,7 +27,7 @@ export function Login() {
   const navigate = useNavigate();
 
   if (user) {
-    navigate("/temp");
+    navigate("/dashboard");
     return null;
   }
 

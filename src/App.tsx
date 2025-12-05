@@ -1,14 +1,12 @@
 import "./App.css";
 import { Routes, Route } from "react-router";
 import Dash from "./pages/dash";
-import Health from "./pages/Health";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Landing from "./pages/Landing";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-import { Temp } from "./pages/Temp";
 import { DashboardLayout } from "./components/DashboardLayout";
 import SharedPocket from "./pages/SharedPocket";
 
@@ -29,7 +27,7 @@ function App() {
       />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/health" element={<Health />} />
+      {/* <Route path="/health" element={<Health />} /> */}
 
       <Route path="/pocket/:hash" element={<SharedPocket />} />
       <Route
@@ -38,16 +36,6 @@ function App() {
           <ProtectedRoute>
             <DashboardLayout>
               <Dash />
-            </DashboardLayout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/temp"
-        element={
-          <ProtectedRoute>
-            <DashboardLayout>
-              <Temp />
             </DashboardLayout>
           </ProtectedRoute>
         }
