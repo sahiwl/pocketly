@@ -1,4 +1,4 @@
-import { deleteContent } from "@/api"
+
 import { useCreateContent } from "@/hooks/useUserContent"
 import type { ContentType } from "@/types/dtos"
 import { useState } from "react"
@@ -51,6 +51,7 @@ export function ContentModal({open, onOpenChange}: ContentModalProps){
       setLink("")
       setDescription("")
       setTags("")
+      onOpenChange(false)
     }catch(error){
       console.error("Failed to create content: ", error)
     }
@@ -80,20 +81,6 @@ export function ContentModal({open, onOpenChange}: ContentModalProps){
          </DialogHeader>
  
          <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-           {/* Title Input */}
-           <div className="space-y-2">
-             <label htmlFor="title" className="text-sm font-medium">
-               Title
-             </label>
-             <Input
-               id="title"
-               placeholder="Enter a title..."
-               value={title}
-               onChange={(e) => setTitle(e.target.value)}
-               required
-             />
-           </div>
- 
            {/* Link Input */}
            <div className="space-y-2">
              <label htmlFor="link" className="text-sm font-medium">
@@ -111,6 +98,38 @@ export function ContentModal({open, onOpenChange}: ContentModalProps){
                />
              </div>
            </div>
+           
+           <div className="space-y-2">
+             <label htmlFor="description" className="text-sm font-medium">
+               Description
+             </label>
+             <div className="relative">
+               <LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+               <Input
+                 id="description"
+                 placeholder="Eg. Tanstack tutorial - resume from 10:23"
+                 value={description}
+                 onChange={(e) => setDescription(e.target.value)}
+                 className="pl-10"
+                 required
+               />
+             </div>
+           </div>
+           
+           {/* Title Input */}
+           <div className="space-y-2">
+             <label htmlFor="title" className="text-sm font-medium">
+               Title
+             </label>
+             <Input
+               id="title"
+               placeholder="Enter a title..."
+               value={title}
+               onChange={(e) => setTitle(e.target.value)}
+               required
+             />
+           </div>
+ 
  
            {/* Content Type */}
            <div className="space-y-2">
@@ -157,7 +176,7 @@ export function ContentModal({open, onOpenChange}: ContentModalProps){
              </Button>
              <Button
                type="submit"
-               className="bg-indigo-600 hover:bg-indigo-700 text-white"
+               className="bg-primary hover:bg-primary/80 text-white"
                disabled={createContentMutation.isPending}
              >
                {createContentMutation.isPending ? (

@@ -27,7 +27,7 @@ export default function Dash() {
     <div className="flex items-center justify-between mb-6">
       <h1 className="text-2xl font-bold">All Notes</h1>
       <div className="flex items-center gap-3">
-        <Button className="bg-indigo-600 hover:bg-indigo-700 text-white"
+        <Button className="text-white bg-primary "
           onClick={()=>{setAddContentOpen(true)}}
         >
           <PlusIcon className="w-4 h-4 mr-2" />
@@ -35,7 +35,7 @@ export default function Dash() {
         </Button>
         <Button
           variant="secondary"
-          className="bg-indigo-100 text-indigo-600 hover:bg-indigo-200"        >
+          className="bg-primary text-white"        >
           <Share2Icon className="w-4 h-4 mr-2" />
           Share Brain
         </Button>
