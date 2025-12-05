@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router";
-import Dash from "./pages/dash";
+import { lazy, Suspense } from "react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Landing from "./pages/Landing";
@@ -8,7 +8,17 @@ import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { DashboardLayout } from "./components/DashboardLayout";
-import SharedPocket from "./pages/SharedPocket";
+import { Spinner } from "./components/ui/spinner";
+
+const Dash = lazy(() => import("./pages/dash"));
+const SharedPocket = lazy(() => import("./pages/SharedPocket"));
+
+const LoadingSpinner = () => (
+  <div className="flex flex-col items-center justify-center min-h-screen gap-4">
+    <Spinner className="h-12 w-12" />
+    <p className="text-sm text-muted-foreground animate-pulse">Loading 🦥</p>
+  </div>
+);
 
 function App() {
   return (
@@ -29,13 +39,22 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       {/* <Route path="/health" element={<Health />} /> */}
 
-      <Route path="/pocket/:hash" element={<SharedPocket />} />
+      <Route
+        path="/pocket/:hash"
+        element={
+          <Suspense fallback={<LoadingSpinner />}>
+            <SharedPocket />
+          </Suspense>
+        }
+      />
       <Route
         path="/dashboard"
         element={
           <ProtectedRoute>
             <DashboardLayout>
-              <Dash />
+              <Suspense fallback={<LoadingSpinner />}>
+                <Dash />
+              </Suspense>
             </DashboardLayout>
           </ProtectedRoute>
         }
@@ -45,7 +64,9 @@ function App() {
         element={
           <ProtectedRoute>
             <DashboardLayout>
-              <Dash />
+              <Suspense fallback={<LoadingSpinner />}>
+                <Dash />
+              </Suspense>
             </DashboardLayout>
           </ProtectedRoute>
         }
@@ -55,7 +76,9 @@ function App() {
         element={
           <ProtectedRoute>
             <DashboardLayout>
-              <Dash />
+              <Suspense fallback={<LoadingSpinner />}>
+                <Dash />
+              </Suspense>
             </DashboardLayout>
           </ProtectedRoute>
         }
@@ -65,7 +88,9 @@ function App() {
         element={
           <ProtectedRoute>
             <DashboardLayout>
-              <Dash />
+              <Suspense fallback={<LoadingSpinner />}>
+                <Dash />
+              </Suspense>
             </DashboardLayout>
           </ProtectedRoute>
         }
