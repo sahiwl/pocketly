@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { useAuth } from "@/hooks/useAuth";
 
-export function Signup() {
+function Signup() {
   type FormDataSignup = {
     username: string;
     email: string;
@@ -42,7 +42,7 @@ export function Signup() {
   };
 
   return (
-    <div className="flex min-h-full items-center justify-center py-12 px-4">
+    <div className="flex min-h-screen items-center justify-center py-12 px-4">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-2xl">Welcome to Pocketly</CardTitle>
@@ -153,3 +153,4 @@ export function Signup() {
     </div>
   );
 }
+export default Signup;

@@ -4,14 +4,15 @@ import { lazy, Suspense } from "react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Landing from "./pages/Landing";
-import { Login } from "./pages/Login";
-import { Signup } from "./pages/Signup";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { DashboardLayout } from "./components/DashboardLayout";
 import { Spinner } from "./components/ui/spinner";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 const Dash = lazy(() => import("./pages/dash"));
 const SharedPocket = lazy(() => import("./pages/SharedPocket"));
+const Login = lazy(() => import("./pages/Login"));
+const Signup = lazy(() => import("./pages/Signup"));
 
 const LoadingSpinner = () => (
   <div className="flex flex-col items-center justify-center min-h-screen gap-4">
@@ -35,16 +36,36 @@ function App() {
           </div>
         }
       />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
+      <Route
+        path="/login"
+        element={
+          <ErrorBoundary>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Login />
+            </Suspense>
+          </ErrorBoundary>
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <ErrorBoundary>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Signup />
+            </Suspense>
+          </ErrorBoundary>
+        }
+      />
       {/* <Route path="/health" element={<Health />} /> */}
 
       <Route
         path="/pocket/:hash"
         element={
-          <Suspense fallback={<LoadingSpinner />}>
-            <SharedPocket />
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense fallback={<LoadingSpinner />}>
+              <SharedPocket />
+            </Suspense>
+          </ErrorBoundary>
         }
       />
       <Route
@@ -52,49 +73,16 @@ function App() {
         element={
           <ProtectedRoute>
             <DashboardLayout>
-              <Suspense fallback={<LoadingSpinner />}>
-                <Dash />
-              </Suspense>
+              <ErrorBoundary>
+                <Suspense fallback={<LoadingSpinner />}>
+                  <Dash />
+                </Suspense>
+              </ErrorBoundary>
             </DashboardLayout>
           </ProtectedRoute>
         }
       />
-      <Route
-        path="/favorites"
-        element={
-          <ProtectedRoute>
-            <DashboardLayout>
-              <Suspense fallback={<LoadingSpinner />}>
-                <Dash />
-              </Suspense>
-            </DashboardLayout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/read-later"
-        element={
-          <ProtectedRoute>
-            <DashboardLayout>
-              <Suspense fallback={<LoadingSpinner />}>
-                <Dash />
-              </Suspense>
-            </DashboardLayout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/tags/:tag"
-        element={
-          <ProtectedRoute>
-            <DashboardLayout>
-              <Suspense fallback={<LoadingSpinner />}>
-                <Dash />
-              </Suspense>
-            </DashboardLayout>
-          </ProtectedRoute>
-        }
-      />
+
     </Routes>
   );
 }

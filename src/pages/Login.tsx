@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { useAuth } from "@/hooks/useAuth";
 
-export function Login() {
+function Login() {
   type FormDataSignin = {
     usernameOrEmail: string;
     password: string;
@@ -41,7 +41,7 @@ export function Login() {
   };
 
   return (
-    <div className="flex min-h-full items-center justify-center py-12 px-4">
+    <div className="flex min-h-screen items-center justify-center py-12 px-4">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-2xl">Login to your account</CardTitle>
@@ -120,3 +120,5 @@ export function Login() {
     </div>
   );
 }
+
+export default Login;
