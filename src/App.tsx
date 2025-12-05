@@ -10,11 +10,14 @@ import { Signup } from "./pages/Signup";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Temp } from "./pages/Temp";
 import { DashboardLayout } from "./components/DashboardLayout";
+import SharedPocket from "./pages/SharedPocket";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={
+      <Route
+        path="/"
+        element={
           <div className="flex min-h-screen flex-col">
             <Navbar />
             <main className="flex-1">
@@ -28,8 +31,11 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/health" element={<Health />} />
 
-      <Route path="/dashboard" element={ 
-        <ProtectedRoute>
+      <Route path="/pocket/:hash" element={<SharedPocket />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
             <DashboardLayout>
               <Dash />
             </DashboardLayout>

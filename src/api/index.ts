@@ -6,6 +6,9 @@ import type {
   LinkRequestDTO,
   LinkResponseDTO,
   LoginRequestDTO,
+  PocketDTO,
+  SharePocketResponse,
+  ShareStatusResponse,
   SignupRequestDTO,
   TagRequestDTO,
   TagResponseDTO,
@@ -55,9 +58,21 @@ export const getUserPocket = async (id: number): Promise<LinkRequestDTO[]> => {
   return resp.data;
 };
 
+export const getSharedPocket = async (hash: string): Promise<PocketDTO> => {
+  const resp = await api.get<PocketDTO>(`/api/pocket/${hash}`);
+  return resp.data;
+};
+
+export const getShareStatus = async (): Promise<ShareStatusResponse> => {
+  const resp = await api.get<ShareStatusResponse>("/api/pocket/share/status");
+  return resp.data;
+};
+
 // share=true enables sharing, share=false disables it
-export const sharePocket = async (share: boolean): Promise<LinkResponseDTO> => {
-  const resp = await api.post<LinkResponseDTO>(
+export const sharePocket = async (
+  share: boolean,
+): Promise<SharePocketResponse> => {
+  const resp = await api.post<SharePocketResponse>(
     `/api/pocket/share?share=${share}`,
   );
   return resp.data;

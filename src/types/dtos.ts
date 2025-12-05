@@ -82,7 +82,12 @@ export interface ApiErrorResponse {
   [key: string]: string | undefined;
 }
 
-export interface ShareLinkResponse {
-  link?: string;
+export interface SharePocketResponse {
+  hash?: string;
   message?: string; // "Sharing disabled" if share=false
+}
+
+export interface ShareStatusResponse {
+  isSharing: boolean;
+  hash?: string;
 }
