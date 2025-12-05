@@ -1,5 +1,4 @@
-import React from 'react';
-import { Layers } from 'lucide-react';
+import { Layers } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -12,7 +11,13 @@ export default function Footer() {
         <div className="flex gap-8 text-sm font-medium text-stone-500">
           {/*<a href="#" className="hover:text-stone-900 transition-colors">Privacy</a>*/}
           {/*<a href="#" className="hover:text-stone-900 transition-colors">Terms</a>*/}
-          <a href="https://www.twitter.com/sahilwithocd" target='_blank' rel="noopener noreferrer" className="hover:text-stone-900 transition-colors">Twitter</a>
+          <a
+            href="https://www.twitter.com/sahilwithocd"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-stone-900 transition-colors">
+            Twitter
+          </a>
         </div>
       </div>
     </footer>

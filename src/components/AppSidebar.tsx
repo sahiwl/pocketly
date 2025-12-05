@@ -1,9 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router";
 import {
   Layers,
-  Inbox,
-  Star,
-  Clock,
   Hash,
   ChevronDown,
   ChevronUp,
@@ -12,7 +9,7 @@ import {
   CreditCard,
   Youtube,
 } from "lucide-react";
-import { FaInstagram, FaXTwitter } from 'react-icons/fa6';
+import { FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { useAuth } from "@/hooks/useAuth";
 import {
   Sidebar,
@@ -41,8 +38,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const libraryItems = [
-  { title: "Youtube", icon: Youtube, href: "/dash/youtube"},
+const libraryItems: Array<{
+  title: string;
+  icon: any;
+  href: string;
+  badge?: string;
+}> = [
+  { title: "Youtube", icon: Youtube, href: "/dash/youtube" },
   { title: "Twitter", icon: FaXTwitter, href: "/dash/twitter" },
   { title: "Instagram", icon: FaInstagram, href: "/dash/instagram" },
 ];

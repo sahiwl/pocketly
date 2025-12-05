@@ -1,5 +1,4 @@
-import React from 'react';
-import { 
+import {
   Layers, Inbox, Star, Clock, Hash, Command, Zap, 
   MessageSquare, Image as ImageIcon, Globe 
 } from 'lucide-react';
@@ -8,8 +7,12 @@ export default function Dashboard() {
   return (
     <div className="relative w-full max-w-5xl mx-auto">
       <div className="mb-6 text-center">
-        <h3 className="text-xl font-semibold text-slate-900">Your Personalized Knowledge Base</h3>
-        <p className="text-sm text-slate-500 mt-1">Available wherever you browse.</p>
+        <h3 className="text-xl font-semibold text-slate-900">
+          Your Personalized Knowledge Base
+        </h3>
+        <p className="text-sm text-slate-500 mt-1">
+          Available wherever you browse.
+        </p>
       </div>
 
       <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xl shadow-slate-200/50 ring-1 ring-slate-950/5">
@@ -56,9 +59,9 @@ export default function Dashboard() {
                 <div className="flex h-5 w-5 items-center justify-center rounded bg-slate-100 text-slate-400">
                   <Layers size={12} />
                 </div>
-                <input 
-                  type="text" 
-                  placeholder="Paste a URL to save..." 
+                <input
+                  type="text"
+                  placeholder="Paste a URL to save..."
                   className="flex-1 bg-transparent text-sm outline-none placeholder:text-slate-400 text-slate-700"
                 />
                 <div className="hidden sm:flex items-center gap-1 rounded border border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[10px] font-medium text-slate-400">
@@ -69,7 +72,7 @@ export default function Dashboard() {
 
             {/* Feed */}
             <div className="flex-1 overflow-hidden p-6 pt-2 space-y-4">
-              <FeedItem 
+              <FeedItem
                 icon={<Zap size={12} />}
                 iconColor="text-orange-600 bg-orange-50"
                 source="Hacker News"
@@ -77,7 +80,7 @@ export default function Dashboard() {
                 title="Show HN: A new way to visualize codebase architecture"
                 description="We built a tool that generates interactive 3D maps of your git repositories to help new engineers onboard faster."
               />
-              <FeedItem 
+              <FeedItem
                 icon={<MessageSquare size={12} />}
                 iconColor="text-blue-500 bg-blue-50"
                 source="Twitter Thread"
@@ -86,7 +89,7 @@ export default function Dashboard() {
                 description="1. Density is back. 2. Skeuomorphism is subtle but present. 3. Typography is getting tighter..."
                 opacity="opacity-90"
               />
-              <FeedItem 
+              <FeedItem
                 icon={<ImageIcon size={12} />}
                 iconColor="text-pink-500 bg-pink-50"
                 source="Dribbble"
@@ -95,12 +98,12 @@ export default function Dashboard() {
                 description="Exploring a light mode interface for a fintech banking application with focus on data visualization."
                 opacity="opacity-75"
               />
-               <div className="rounded-xl border border-slate-100 bg-white p-5 opacity-40 blur-[1px]">
+              <div className="rounded-xl border border-slate-100 bg-white p-5 opacity-40 blur-[1px]">
                 <div className="flex items-center gap-2 mb-3">
-                    <div className="flex items-center gap-1.5 rounded bg-slate-100 px-2 py-1 text-[10px] font-medium text-slate-500">
-                      <Globe size={12} /> Medium
-                    </div>
-                    <span className="text-[10px] text-slate-300">1d ago</span>
+                  <div className="flex items-center gap-1.5 rounded bg-slate-100 px-2 py-1 text-[10px] font-medium text-slate-500">
+                    <Globe size={12} /> Medium
+                  </div>
+                  <span className="text-[10px] text-slate-300">1d ago</span>
                 </div>
                 <div className="h-5 w-3/4 bg-slate-100 rounded mb-2"></div>
                 <div className="h-4 w-full bg-slate-50 rounded mb-1"></div>
@@ -116,15 +119,30 @@ export default function Dashboard() {
 }
 
 // Helper Components (can remain in same file or be split further)
-function SidebarItem({ icon: Icon, label, count, active }: { icon: any, label: string, count?: number, active?: boolean }) {
+function SidebarItem({
+  icon: Icon,
+  label,
+  count,
+  active,
+}: {
+  icon: any;
+  label: string;
+  count?: number;
+  active?: boolean;
+}) {
   return (
-    <a href="#" className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors ${active ? 'bg-indigo-50 text-indigo-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}>
+    <a
+      href="#"
+      className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors ${active ? "bg-indigo-50 text-indigo-600" : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"}`}
+    >
       <div className="flex items-center gap-3">
         <Icon size={16} className={active ? 'text-indigo-600' : 'text-slate-400'} />
         {label}
       </div>
       {count && (
-        <span className={`flex h-5 min-w-[1.25rem] items-center justify-center rounded px-1 text-[10px] font-bold ${active ? 'bg-white text-indigo-600 shadow-sm ring-1 ring-indigo-100' : 'bg-slate-100 text-slate-500'}`}>
+        <span
+          className={`flex h-5 min-w-[1.25rem] items-center justify-center rounded px-1 text-[10px] font-bold ${active ? "bg-white text-indigo-600 shadow-sm ring-1 ring-indigo-100" : "bg-slate-100 text-slate-500"}`}
+        >
           {count}
         </span>
       )}
@@ -132,17 +150,33 @@ function SidebarItem({ icon: Icon, label, count, active }: { icon: any, label: s
   );
 }
 
-function FeedItem({ icon, iconColor, source, time, title, description, opacity = '' }: any) {
+function FeedItem({
+  icon,
+  iconColor,
+  source,
+  time,
+  title,
+  description,
+  opacity = "",
+}: any) {
   return (
-    <div className={`group cursor-pointer rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:shadow-md hover:border-indigo-200 ${opacity}`}>
+    <div
+      className={`group cursor-pointer rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:shadow-md hover:border-indigo-200 ${opacity}`}
+    >
       <div className="mb-3 flex items-center justify-between">
-        <div className={`flex items-center gap-1.5 rounded px-2 py-1 text-[10px] font-medium ${iconColor}`}>
+        <div
+          className={`flex items-center gap-1.5 rounded px-2 py-1 text-[10px] font-medium ${iconColor}`}
+        >
           {icon} {source}
         </div>
         <span className="text-[10px] text-slate-400">{time}</span>
       </div>
-      <h4 className="mb-2 text-base font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors">{title}</h4>
-      <p className="text-sm leading-relaxed text-slate-500 line-clamp-2">{description}</p>
+      <h4 className="mb-2 text-base font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors">
+        {title}
+      </h4>
+      <p className="text-sm leading-relaxed text-slate-500 line-clamp-2">
+        {description}
+      </p>
     </div>
   );
 }

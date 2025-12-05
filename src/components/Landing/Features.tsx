@@ -1,22 +1,21 @@
-import React from 'react';
-import { Zap, Sparkles, Search } from 'lucide-react';
+import { Zap, Sparkles, Search } from "lucide-react";
 
 export default function Features() {
   return (
     <section className="py-24 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          <FeatureCard 
+          <FeatureCard
             icon={<Zap className="h-5 w-5" />}
             title="Instant Capture"
             description="Save anything from your browser in milliseconds. Just CMD+V and you're done."
           />
-          <FeatureCard 
+          <FeatureCard
             icon={<Sparkles className="h-5 w-5" />}
             title="Smart Organization"
             description="Automatically tag and categorize your saved content for effortless organization."
           />
-          <FeatureCard 
+          <FeatureCard
             icon={<Search className="h-5 w-5" />}
             title="Smart Search"
             description="Recall that recipe you saved 2 years ago with vague natural language search."
