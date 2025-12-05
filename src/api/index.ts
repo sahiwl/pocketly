@@ -1,85 +1,109 @@
 import axios from "axios";
-import type { AuthResponseDTO, ContentRequestDTO, ContentResponseDTO, LinkRequestDTO, LinkResponseDTO, LoginRequestDTO, SignupRequestDTO, TagRequestDTO, TagResponseDTO, UserResponseDTO } from "../types/dtos";
-
+import type {
+  AuthResponseDTO,
+  ContentRequestDTO,
+  ContentResponseDTO,
+  LinkRequestDTO,
+  LinkResponseDTO,
+  LoginRequestDTO,
+  SignupRequestDTO,
+  TagRequestDTO,
+  TagResponseDTO,
+  UserResponseDTO,
+} from "../types/dtos";
 
 export const api = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE || "http://localhost:8080",
-  withCredentials: true
-})
+  withCredentials: true,
+});
 
-export const loginApi = async (payload: LoginRequestDTO): Promise<AuthResponseDTO> =>{
-  const r = await api.post<AuthResponseDTO>('/api/auth/signin', payload);
+export const loginApi = async (
+  payload: LoginRequestDTO,
+): Promise<AuthResponseDTO> => {
+  const r = await api.post<AuthResponseDTO>("/api/auth/signin", payload);
   return r.data;
-}
+};
 
-export const signupApi = async (payload: SignupRequestDTO): Promise<AuthResponseDTO> =>{
-  const r = await api.post<AuthResponseDTO>('/api/auth/signup', payload);
+export const signupApi = async (
+  payload: SignupRequestDTO,
+): Promise<AuthResponseDTO> => {
+  const r = await api.post<AuthResponseDTO>("/api/auth/signup", payload);
   return r.data;
-}
+};
 
-export const logoutApi = async (): Promise<void> =>{
-  await api.post('/api/auth/logout');
-}
+export const logoutApi = async (): Promise<void> => {
+  await api.post("/api/auth/logout");
+};
 
-export const currUser = async () : Promise<UserResponseDTO> =>{
+export const currUser = async (): Promise<UserResponseDTO> => {
   const r = await api.get<UserResponseDTO>("/api/auth/me");
   return r.data;
-}
+};
 
-export const getAllLinks = async () : Promise<LinkResponseDTO[]> =>{
-  const resp = await api.get('/api/');
+export const getAllLinks = async (): Promise<LinkResponseDTO[]> => {
+  const resp = await api.get("/api/");
   return resp.data;
-}
+};
 
-export const bestatus = async() : Promise<unknown> =>{
+export const bestatus = async (): Promise<unknown> => {
   const resp = await api.get("/health");
   return resp.data;
-}
+};
 
-export const getUserPocket = async(id :number) : Promise<LinkRequestDTO[]> =>{
+export const getUserPocket = async (id: number): Promise<LinkRequestDTO[]> => {
   const resp = await api.get(`/api/pocket/${id}`);
   return resp.data;
-}
+};
 
-export const createPocket = async (): Promise<LinkResponseDTO> =>{
-  const resp = await api.post('/api/pocket/share');
+// share=true enables sharing, share=false disables it
+export const sharePocket = async (share: boolean): Promise<LinkResponseDTO> => {
+  const resp = await api.post<LinkResponseDTO>(
+    `/api/pocket/share?share=${share}`,
+  );
   return resp.data;
-}
+};
 
 export const getUserContent = async (): Promise<ContentResponseDTO[]> => {
-  const resp = await api.get<ContentResponseDTO[]>('/api/content')
-  return resp.data
-}
-
-export const createContent = async (payload: ContentRequestDTO): Promise<ContentResponseDTO> => {
-  const resp = await api.post<ContentResponseDTO>('/api/content', payload)
-  return resp.data
-}
-
-export const updateContent = async (contentId: number, payload: ContentRequestDTO): Promise<ContentResponseDTO> => {
-  const resp = await api.put<ContentResponseDTO>(`/api/content/${contentId}`, payload)
-  return resp.data
-}
-
-
-export const deleteContent = async(contentId: number) : Promise<{ message: string }> =>{
-  const resp = await api.delete<{ message: string }>(`/api/content/${contentId}`);
+  const resp = await api.get<ContentResponseDTO[]>("/api/content");
   return resp.data;
-}
+};
+
+export const createContent = async (payload: ContentRequestDTO,): Promise<ContentResponseDTO> => {
+  const resp = await api.post<ContentResponseDTO>("/api/content", payload);
+  return resp.data;
+};
+
+export const updateContent = async (
+  contentId: number,
+  payload: ContentRequestDTO,
+): Promise<ContentResponseDTO> => {
+  const resp = await api.put<ContentResponseDTO>(
+    `/api/content/${contentId}`,
+    payload,
+  );
+  return resp.data;
+};
+
+export const deleteContent = async (contentId: number,): Promise<{ message: string }> => {
+  const resp = await api.delete<{ message: string }>(
+    `/api/content/${contentId}`,
+  );
+  return resp.data;
+};
 
 export const createTag = async (payload: TagRequestDTO): Promise<TagResponseDTO> => {
-  const resp = await api.post<TagResponseDTO>('/api/tags', payload)
-  return resp.data
-}
+  const resp = await api.post<TagResponseDTO>("/api/tags", payload);
+  return resp.data;
+};
 
-export const deleteTag = async (tagId: number): Promise<{message: string}> => {
-  const resp = await api.delete<{message: string}>(`/api/tags/${tagId}`)
-  return resp.data
-}
+export const deleteTag = async (tagId: number): Promise<{ message: string }> => {
+  const resp = await api.delete<{ message: string }>(`/api/tags/${tagId}`);
+  return resp.data;
+};
 
-export const getAllTags = async() : Promise<TagResponseDTO> => {
+export const getAllTags = async (): Promise<TagResponseDTO> => {
   const resp = await api.get<TagResponseDTO>(`/api/tags`);
   return resp.data;
-}
+};
 
 export default api;

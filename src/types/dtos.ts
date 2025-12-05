@@ -48,6 +48,7 @@ export interface ContentResponseDTO {
   type: ContentType;
   link: string;
   userId: number;
+  description: string;
   username: string;
   tags: string[];
 }

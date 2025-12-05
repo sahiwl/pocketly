@@ -5,7 +5,7 @@ import {
   CardAction,
   CardContent,
 } from "@/components/ui/card";
-import { Share2Icon, Trash2Icon, YoutubeIcon, Link2Icon, PencilIcon, Divide } from "lucide-react";
+import { YoutubeIcon, Link2Icon, PencilIcon, Trash2Icon } from "lucide-react";
 import {
   FacebookEmbed,
   InstagramEmbed,
@@ -27,6 +27,7 @@ export interface ContentCardProps {
   content: ContentResponseDTO;
   onDelete?: (id: number) => void;
   onEdit?: (content: ContentResponseDTO) => void;
+  onView?: (content: ContentResponseDTO) => void;
   isDeleting?: boolean;
 }
 
@@ -43,6 +44,8 @@ const typeIcons: Record<ContentType, React.ElementType> = {
 export default function ContentCard({
   content,
   onDelete,
+  onEdit,
+  onView,
   isDeleting,
 }: ContentCardProps) {
   const IconComponent = typeIcons[content.type as ContentType] || Link2Icon;
@@ -51,6 +54,14 @@ export default function ContentCard({
 
   const visibleTags = content.tags?.slice(0, maxtagsallowed) || [];
   const remainingTags = (content.tags?.length || 0) - maxtagsallowed;
+
+  // Handle card click to open view modal (but not when clicking buttons)
+  const handleCardClick = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    // Don't trigger view if clicking on action buttons
+    if (target.closest("button")) return;
+    onView?.(content);
+  };
 
   const renderEmbed = () => {
     switch (content.type as ContentType) {
@@ -96,6 +107,7 @@ export default function ContentCard({
             href={content.link}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
             className="block w-full rounded-lg bg-muted p-4 text-sm text-muted-foreground hover:bg-muted/80 break-all"
           >
             {content.link}
@@ -105,7 +117,10 @@ export default function ContentCard({
   };
 
   return (
-    <Card className="w-full max-w-[300px] flex flex-col">
+    <Card
+      className="w-full max-w-[300px] flex flex-col cursor-pointer hover:shadow-md transition-shadow"
+      onClick={handleCardClick}
+    >
       <CardHeader className="pb-0">
         <div className="flex items-start gap-2 flex-1 min-w-0">
           <IconComponent className="h-5 w-5 mt-0.5 shrink-0 text-muted-foreground" />
@@ -115,11 +130,19 @@ export default function ContentCard({
         </div>
         <CardAction>
           <div className="flex items-center gap-2">
-            <button onClick={() => onEdit?.(content)}>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onEdit?.(content);
+              }}
+            >
               <PencilIcon className="h-4 w-4 cursor-pointer text-muted-foreground hover:text-foreground transition-colors" />
             </button>
             <button
-              onClick={() => onDelete?.(content.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete?.(content.id);
+              }}
               disabled={isDeleting}
               className="disabled:opacity-50"
             >
@@ -130,13 +153,11 @@ export default function ContentCard({
       </CardHeader>
 
       <CardContent className="flex-1 flex flex-col justify-between">
-        <div>
-          {renderEmbed()}
-        </div>
+        <div>{renderEmbed()}</div>
 
-        {/* Description */}
+        {/* Description - 3 lines max with ellipsis */}
         {content.description && (
-          <p className="text-sm text-muted-foreground mt-3 line-clamp-2">
+          <p className="text-sm text-muted-foreground mt-3 line-clamp-3">
             {content.description}
           </p>
         )}
@@ -159,7 +180,6 @@ export default function ContentCard({
             )}
           </div>
         )}
-        
       </CardContent>
     </Card>
   );

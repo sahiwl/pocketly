@@ -3,7 +3,8 @@ import {
   getUserContent,
   deleteContent,
   createContent,
-  createPocket,
+  updateContent,
+  sharePocket,
 } from "@/api";
 import type { ContentRequestDTO, ContentResponseDTO } from "@/types/dtos";
 
@@ -38,8 +39,25 @@ export function useCreateContent() {
   });
 }
 
+export function useUpdateContent() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({
+      contentId,
+      payload,
+    }: {
+      contentId: number;
+      payload: ContentRequestDTO;
+    }) => updateContent(contentId, payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: CONTENT_QUERY_KEY });
+    },
+  });
+}
+
+
 export function useSharePocket() {
   return useMutation({
-    mutationFn: () => createPocket(),
+    mutationFn: (share: boolean) => sharePocket(share),
   });
 }
