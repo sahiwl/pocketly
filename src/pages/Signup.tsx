@@ -28,14 +28,14 @@ function Signup() {
   const navigate = useNavigate();
 
   if (user) {
-    navigate("/dash");
+    navigate("/dashboard");
     return null;
   }
 
   const onSubmit = async (data: FormDataSignup) => {
     try {
       await signup(data);
-      navigate("/dash");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Signup failed:", error);
     }

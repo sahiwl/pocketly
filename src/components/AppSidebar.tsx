@@ -44,9 +44,9 @@ const libraryItems: Array<{
   href: string;
   badge?: string;
 }> = [
-  { title: "Youtube", icon: Youtube, href: "/dash/youtube" },
-  { title: "Twitter", icon: FaXTwitter, href: "/dash/twitter" },
-  { title: "Instagram", icon: FaInstagram, href: "/dash/instagram" },
+  { title: "Youtube", icon: Youtube, href: "/dashboard/youtube" },
+  { title: "Twitter", icon: FaXTwitter, href: "/dashboard/twitter" },
+  { title: "Instagram", icon: FaInstagram, href: "/dashboard/instagram" },
 ];
 
 const collections = [
