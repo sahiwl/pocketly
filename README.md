@@ -1,73 +1,134 @@
-# React + TypeScript + Vite
+# Pocketly Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React-based web application for saving, organizing, and sharing links and resources - your personal second brain.
 
-Currently, two official plugins are available:
+## 🎯 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Pocketly is a powerful resource management tool that serves as your personal knowledge base. The frontend provides an intuitive interface to save links, organize them with tags, view rich previews, and share curated collections through simple URLs.
 
-## React Compiler
+### Key Features
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+ - JWT-based login and signup
+ - Save and organize links with rich previews
+- Store and manage any type of resource
+ - Multi-tag support for content organization
+ - Share collections via hash-based URLs
+ - Beautiful interface built with Shadcn UI
+- Fast data fetching with TanStack Query
+- Works seamlessly across all devices
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React with TypeScript
+- Shadcn UI + Tailwind CSS
+- Zustand
+- TanStack Query
+- React Hook Form + Zod validation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+<!--## 📁 Project Structure-->
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+<!--```
+pocketly-fe/
+├── src/
+│   ├── components/          # Reusable UI components
+│   │   ├── ui/             # Shadcn UI components
+│   │   ├── layout/         # Layout components
+│   │   └── features/       # Feature-specific components
+│   ├── pages/              # Route pages
+│   │   ├── auth/           # Login/Signup pages
+│   │   ├── dashboard/      # Main dashboard
+│   │   ├── links/          # Link management
+│   │   ├── content/        # Content management
+│   │   ├── tags/           # Tag management
+│   │   └── share/          # Public sharing view
+│   ├── lib/                # Utilities and helpers
+│   │   ├── axios.ts        # Axios instance configuration
+│   │   └── utils.ts        # Helper functions
+│   ├── types/              # TypeScript type definitions
+│   │   └── dto.ts          # DTOs matching backend
+│   ├── hooks/              # Custom React hooks
+│   │   ├── useAuth.ts      # Authentication hook
+│   │   ├── useLinks.ts     # Link management hook
+│   │   ├── useContent.ts   # Content management hook
+│   │   └── useTags.ts      # Tag management hook
+│   ├── stores/             # Zustand stores
+│   ├── App.tsx             # Main app component
+│   └── main.tsx            # Entry point
+├── public/                 # Static assets
+├── .env                    # Environment variables
+├── vite.config.ts          # Vite configuration
+├── tailwind.config.js      # Tailwind configuration
+├── tsconfig.json           # TypeScript configuration
+└── package.json            # Dependencies
+```-->
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+##  Getting Started
+
+### Prerequisites
+
+- **Node.js** 18+ (recommended: 20+)
+- **pnpm** (or npm/yarn)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd pocketly/pocketly-fe
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
+
+3. **Configure environment variables**
+   
+   Create a `.env` file in the root directory:
+   ```env
+   VITE_API_BASE=http://localhost:8080/api
+   ```
+
+4. **Start the development server**
+   ```bash
+   pnpm dev
+   ```
+
+   The application will be available at `http://localhost:5173`
+
+### Available Scripts
+
+```bash
+# Start development server
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Preview production build
+pnpm preview
+
+# Run linter
+pnpm lint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🔧 Configuration
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Environment Variables
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `VITE_API_BASE` | Backend API base URL | `http://localhost:8080/api` |
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+
+---
+
+~sahiwl
