@@ -2,22 +2,21 @@
 
 A modern React-based web application for saving, organizing, and sharing links and resources - your personal second brain.
 
-## 🎯 Overview
+## Overview
 
 Pocketly is a powerful resource management tool that serves as your personal knowledge base. The frontend provides an intuitive interface to save links, organize them with tags, view rich previews, and share curated collections through simple URLs.
 
 ### Key Features
 
  - JWT-based login and signup
- - Save and organize links with rich previews
+ - Save and organize links with embedded previews
 - Store and manage any type of resource
  - Multi-tag support for content organization
  - Share collections via hash-based URLs
- - Beautiful interface built with Shadcn UI
 - Fast data fetching with TanStack Query
 - Works seamlessly across all devices
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - React with TypeScript
 - Shadcn UI + Tailwind CSS
@@ -112,7 +111,6 @@ pnpm preview
 pnpm lint
 ```
 
-## 🔧 Configuration
 
 ### Environment Variables
 
@@ -120,7 +118,7 @@ pnpm lint
 |----------|-------------|---------|
 | `VITE_API_BASE` | Backend API base URL | `http://localhost:8080/api` |
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
