@@ -144,7 +144,6 @@ export default function Dash() {
     );
   }
 
-  // Empty state
   if (!contents || contents.length === 0) {
     return (
       <div>

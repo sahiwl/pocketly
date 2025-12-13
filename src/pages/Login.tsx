@@ -41,7 +41,12 @@ function Login() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center py-12 px-4">
+    <div className="relative flex min-h-screen items-center justify-center py-12 px-4">
+      <div className="absolute top-10 left-45">
+        <Link to={"/"} className="text-sm font-medium text-primary hover:underline">
+          home
+        </Link>
+      </div>
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-2xl">Login to your account</CardTitle>
