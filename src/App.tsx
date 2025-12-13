@@ -10,6 +10,8 @@ import { Spinner } from "./components/ui/spinner";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 
 const Dash = lazy(() => import("./pages/dash"));
+const TagPage = lazy(() => import("./pages/TagPage"));
+const TypePage = lazy(() => import("./pages/TypePage"));
 const SharedPocket = lazy(() => import("./pages/SharedPocket"));
 const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./pages/Signup"));
@@ -68,6 +70,7 @@ function App() {
           </ErrorBoundary>
         }
       />
+
       <Route
         path="/dashboard"
         element={
@@ -83,6 +86,35 @@ function App() {
         }
       />
 
+      <Route
+        path="/dashboard/tag/:tagName"
+        element={
+          <ProtectedRoute>
+            <DashboardLayout>
+              <ErrorBoundary>
+                <Suspense fallback={<LoadingSpinner />}>
+                  <TagPage />
+                </Suspense>
+              </ErrorBoundary>
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/dashboard/type/:typeName"
+        element={
+          <ProtectedRoute>
+            <DashboardLayout>
+              <ErrorBoundary>
+                <Suspense fallback={<LoadingSpinner />}>
+                  <TypePage />
+                </Suspense>
+              </ErrorBoundary>
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }

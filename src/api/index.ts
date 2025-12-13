@@ -83,7 +83,9 @@ export const getUserContent = async (): Promise<ContentResponseDTO[]> => {
   return resp.data;
 };
 
-export const createContent = async (payload: ContentRequestDTO,): Promise<ContentResponseDTO> => {
+export const createContent = async (
+  payload: ContentRequestDTO,
+): Promise<ContentResponseDTO> => {
   const resp = await api.post<ContentResponseDTO>("/api/content", payload);
   return resp.data;
 };
@@ -99,25 +101,36 @@ export const updateContent = async (
   return resp.data;
 };
 
-export const deleteContent = async (contentId: number,): Promise<{ message: string }> => {
+export const deleteContent = async (
+  contentId: number,
+): Promise<{ message: string }> => {
   const resp = await api.delete<{ message: string }>(
     `/api/content/${contentId}`,
   );
   return resp.data;
 };
 
-export const createTag = async (payload: TagRequestDTO): Promise<TagResponseDTO> => {
-  const resp = await api.post<TagResponseDTO>("/api/tags", payload);
-  return resp.data;
+interface CreateTagResponse {
+  message: string;
+  data: TagResponseDTO;
+}
+
+export const createTag = async (
+  payload: TagRequestDTO,
+): Promise<TagResponseDTO> => {
+  const resp = await api.post<CreateTagResponse>("/api/tags", payload);
+  return resp.data.data;
 };
 
-export const deleteTag = async (tagId: number): Promise<{ message: string }> => {
+export const deleteTag = async (
+  tagId: number,
+): Promise<{ message: string }> => {
   const resp = await api.delete<{ message: string }>(`/api/tags/${tagId}`);
   return resp.data;
 };
 
-export const getAllTags = async (): Promise<TagResponseDTO> => {
-  const resp = await api.get<TagResponseDTO>(`/api/tags`);
+export const getAllTags = async (): Promise<TagResponseDTO[]> => {
+  const resp = await api.get<TagResponseDTO[]>(`/api/tags`);
   return resp.data;
 };
 

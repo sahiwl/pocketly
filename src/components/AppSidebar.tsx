@@ -8,9 +8,11 @@ import {
   Settings,
   CreditCard,
   Youtube,
+  Loader2,
 } from "lucide-react";
 import { FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { useAuth } from "@/hooks/useAuth";
+import { useTags } from "@/hooks/useTags";
 import {
   Sidebar,
   SidebarContent,
@@ -40,25 +42,36 @@ import {
 
 const libraryItems: Array<{
   title: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
+  type: string;
   href: string;
   badge?: string;
 }> = [
-  { title: "Youtube", icon: Youtube, href: "/dashboard/youtube" },
-  { title: "Twitter", icon: FaXTwitter, href: "/dashboard/twitter" },
-  { title: "Instagram", icon: FaInstagram, href: "/dashboard/instagram" },
-];
-
-const collections = [
-  { title: "Design", href: "/tags/design" },
-  { title: "Development", href: "/tags/development" },
-  { title: "Recipes", href: "/tags/recipes" },
+  {
+    title: "Youtube",
+    icon: Youtube,
+    type: "youtube",
+    href: "/dashboard/type/youtube",
+  },
+  {
+    title: "Twitter",
+    icon: FaXTwitter,
+    type: "tweet",
+    href: "/dashboard/type/tweet",
+  },
+  {
+    title: "Instagram",
+    icon: FaInstagram,
+    type: "instagram",
+    href: "/dashboard/type/instagram",
+  },
 ];
 
 export function AppSidebar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const { data: tags = [], isLoading: isLoadingTags } = useTags();
 
   const handleLogout = async () => {
     await logout();
@@ -117,7 +130,7 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* Collections Section - Collapsible */}
+        {/* Tags Section - Collapsible */}
         <Collapsible defaultOpen className="group/collapsible">
           <SidebarGroup>
             <SidebarGroupLabel
@@ -132,20 +145,40 @@ export function AppSidebar() {
             <CollapsibleContent>
               <SidebarGroupContent>
                 <SidebarMenu>
-                  {collections.map((collection) => (
-                    <SidebarMenuItem key={collection.title}>
-                      <SidebarMenuButton
-                        asChild
-                        isActive={location.pathname === collection.href}
-                        tooltip={collection.title}
-                      >
-                        <Link to={collection.href}>
-                          <Hash className="h-4 w-4" />
-                          <span>{collection.title}</span>
-                        </Link>
-                      </SidebarMenuButton>
+                  {isLoadingTags ? (
+                    <SidebarMenuItem>
+                      <div className="flex items-center gap-2 px-2 py-1.5 text-muted-foreground">
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        <span className="text-sm">Loading...</span>
+                      </div>
                     </SidebarMenuItem>
-                  ))}
+                  ) : tags.length === 0 ? (
+                    <SidebarMenuItem>
+                      <div className="px-2 py-1.5 text-sm text-muted-foreground">
+                        No tags yet
+                      </div>
+                    </SidebarMenuItem>
+                  ) : (
+                    tags.map((tag) => (
+                      <SidebarMenuItem key={tag.id}>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={
+                            location.pathname ===
+                            `/dashboard/tag/${tag.title.toLowerCase()}`
+                          }
+                          tooltip={tag.title}
+                        >
+                          <Link
+                            to={`/dashboard/tag/${encodeURIComponent(tag.title.toLowerCase())}`}
+                          >
+                            <Hash className="h-4 w-4" />
+                            <span>{tag.title}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))
+                  )}
                 </SidebarMenu>
               </SidebarGroupContent>
             </CollapsibleContent>
@@ -171,9 +204,9 @@ export function AppSidebar() {
                     <span className="truncate font-semibold">
                       {user?.username || "User"}
                     </span>
-                    <span className="truncate text-xs text-muted-foreground">
+                    {/* <span className="truncate text-xs text-muted-foreground">
                       ID: {user?.id || "N/A"}
-                    </span>
+                    </span> */}
                   </div>
                   <ChevronUp className="ml-auto h-4 w-4" />
                 </SidebarMenuButton>
@@ -191,20 +224,18 @@ export function AppSidebar() {
                     <span className="truncate font-semibold">
                       {user?.username || "User"}
                     </span>
-                    <span className="truncate text-xs text-muted-foreground">
-                      ID: {user?.id || "N/A"}
-                    </span>
+                   
                   </div>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                {/* <DropdownMenuItem>
                   <Settings className="mr-2 h-4 w-4" />
                   <span>Account</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <CreditCard className="mr-2 h-4 w-4" />
                   <span>Billing</span>
-                </DropdownMenuItem>
+                </DropdownMenuItem> */}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogout}>
                   <LogOut className="mr-2 h-4 w-4" />
