@@ -1,15 +1,26 @@
 import { useParams } from "react-router";
 import { useUserContent, useDeleteContent } from "@/hooks/useUserContent";
 import { Skeleton } from "@/components/ui/skeleton";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import ContentCard from "@/components/ContentCard";
 import { ContentModal } from "@/components/ContentModal";
 import { ContentViewModal } from "@/components/ContentViewModal";
 import { useState } from "react";
 import type { ContentResponseDTO, ContentType } from "@/types/dtos";
 import { Youtube } from "lucide-react";
-import { FaInstagram, FaXTwitter, FaLinkedin, FaFacebook, FaPinterest, FaLink } from "react-icons/fa6";
+import {
+  FaInstagram,
+  FaXTwitter,
+  FaLinkedin,
+  FaFacebook,
+  FaPinterest,
+  FaLink,
+} from "react-icons/fa6";
 
-const typeIcons: Record<ContentType, React.ComponentType<{ className?: string }>> = {
+const typeIcons: Record<
+  ContentType,
+  React.ComponentType<{ className?: string }>
+> = {
   youtube: Youtube,
   tweet: FaXTwitter,
   instagram: FaInstagram,
@@ -31,18 +42,26 @@ const typeLabels: Record<ContentType, string> = {
 
 export default function TypePage() {
   const { typeName } = useParams<{ typeName: string }>();
-  const { data: allContents, isLoading, isError, error, refetch } = useUserContent();
+  const {
+    data: allContents,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useUserContent();
 
   const [contentModalOpen, setContentModalOpen] = useState(false);
-  const [editingContent, setEditingContent] = useState<ContentResponseDTO | null>(null);
-  const [viewingContent, setViewingContent] = useState<ContentResponseDTO | null>(null);
+  const [editingContent, setEditingContent] =
+    useState<ContentResponseDTO | null>(null);
+  const [viewingContent, setViewingContent] =
+    useState<ContentResponseDTO | null>(null);
   const [viewModalOpen, setViewModalOpen] = useState(false);
 
   const deleteContentMutation = useDeleteContent();
 
   // Filter content by type
   const contents = allContents?.filter(
-    (content) => content.type.toLowerCase() === (typeName || "").toLowerCase()
+    (content) => content.type.toLowerCase() === (typeName || "").toLowerCase(),
   );
 
   const handleDelete = (contentId: number) => {
@@ -75,8 +94,16 @@ export default function TypePage() {
 
   const renderModals = () => (
     <>
-      <ContentModal open={contentModalOpen} onOpenChange={handleContentModalClose} content={editingContent} />
-      <ContentViewModal open={viewModalOpen} onOpenChange={handleViewModalClose} content={viewingContent} />
+      <ContentModal
+        open={contentModalOpen}
+        onOpenChange={handleContentModalClose}
+        content={editingContent}
+      />
+      <ContentViewModal
+        open={viewModalOpen}
+        onOpenChange={handleViewModalClose}
+        content={viewingContent}
+      />
     </>
   );
 
@@ -84,6 +111,7 @@ export default function TypePage() {
     return (
       <div>
         <div className="flex items-center gap-2 mb-6">
+          <SidebarTrigger />
           <Icon className="h-6 w-6 text-primary" />
           <h1 className="text-2xl font-bold">{label}</h1>
         </div>
@@ -105,12 +133,20 @@ export default function TypePage() {
     return (
       <div>
         <div className="flex items-center gap-2 mb-6">
+          <SidebarTrigger />
           <Icon className="h-6 w-6 text-primary" />
           <h1 className="text-2xl font-bold">{label}</h1>
         </div>
         <div className="flex flex-col items-center justify-center gap-4 py-12">
-          <p className="text-destructive">Error loading content: {error.message}</p>
-          <button onClick={() => refetch()} className="text-primary hover:underline">Try again</button>
+          <p className="text-destructive">
+            Error loading content: {error.message}
+          </p>
+          <button
+            onClick={() => refetch()}
+            className="text-primary hover:underline"
+          >
+            Try again
+          </button>
         </div>
         {renderModals()}
       </div>
@@ -120,9 +156,12 @@ export default function TypePage() {
   return (
     <div>
       <div className="flex items-center gap-2 mb-6">
+        <SidebarTrigger />
         <Icon className="h-6 w-6 text-primary" />
         <h1 className="text-2xl font-bold">{label}</h1>
-        <span className="text-muted-foreground">({contents?.length || 0} items)</span>
+        <span className="text-muted-foreground">
+          ({contents?.length || 0} items)
+        </span>
       </div>
 
       {!contents || contents.length === 0 ? (

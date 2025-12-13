@@ -5,8 +5,6 @@ import {
   ChevronDown,
   ChevronUp,
   LogOut,
-  Settings,
-  CreditCard,
   Youtube,
   Loader2,
 } from "lucide-react";
@@ -224,7 +222,6 @@ export function AppSidebar() {
                     <span className="truncate font-semibold">
                       {user?.username || "User"}
                     </span>
-                   
                   </div>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />

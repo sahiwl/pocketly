@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Share2Icon, PlusIcon } from "lucide-react";
 import { useDeleteContent, useUserContent } from "@/hooks/useUserContent";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -63,16 +64,22 @@ export default function Dash() {
   };
 
   const HeaderSection = () => (
-    <div className="flex items-center justify-between mb-6">
-      <h1 className="text-2xl font-bold">All Notes</h1>
-      <div className="flex items-center gap-3">
-        <Button className="text-white bg-primary" onClick={handleAddContent}>
+    <div className="flex items-center justify-between mb-6 gap-3">
+      <div className="flex items-center gap-2">
+        <SidebarTrigger />
+        <h1 className="text-2xl font-bold whitespace-nowrap">All Notes</h1>
+      </div>
+      <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+        <Button
+          className="text-white bg-primary whitespace-nowrap"
+          onClick={handleAddContent}
+        >
           <PlusIcon className="w-4 h-4 mr-2" />
           Add Content
         </Button>
         <Button
           variant="secondary"
-          className="bg-primary text-white"
+          className="bg-primary text-white whitespace-nowrap"
           onClick={() => setShareBrainOpen(true)}
         >
           <Share2Icon className="w-4 h-4 mr-2" />
