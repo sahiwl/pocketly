@@ -7,8 +7,16 @@ import {
   LogOut,
   Youtube,
   Loader2,
+  LayoutDashboardIcon,
 } from "lucide-react";
-import { FaInstagram, FaXTwitter } from "react-icons/fa6";
+import {
+  FaInstagram,
+  FaXTwitter,
+  FaLinkedin,
+  FaFacebook,
+  FaPinterest,
+  FaLink,
+} from "react-icons/fa6";
 import { useAuth } from "@/hooks/useAuth";
 import { useTags } from "@/hooks/useTags";
 import {
@@ -63,6 +71,30 @@ const libraryItems: Array<{
     type: "instagram",
     href: "/dashboard/type/instagram",
   },
+  {
+    title: "LinkedIn",
+    icon: FaLinkedin,
+    type: "linkedin",
+    href: "/dashboard/type/linkedin",
+  },
+  {
+    title: "Pinterest",
+    icon: FaPinterest,
+    type: "pinterest",
+    href: "/dashboard/type/pinterest",
+  },
+  {
+    title: "Facebook",
+    icon: FaFacebook,
+    type: "facebook",
+    href: "/dashboard/type/facebook",
+  },
+  {
+    title: "Other",
+    icon: FaLink,
+    type: "other",
+    href: "/dashboard/type/other",
+  },
 ];
 
 export function AppSidebar() {
@@ -98,13 +130,25 @@ export function AppSidebar() {
       </SidebarHeader>
 
       <SidebarContent>
-        {/* Library Section */}
+        {/* Types Section */}
         <SidebarGroup>
           <SidebarGroupLabel className="text-xs font-semibold uppercase tracking-wider text-primary group-data-[collapsible=icon]:hidden">
             Types
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  isActive={location.pathname === "/dashboard"}
+                  tooltip="Dashboard"
+                >
+                  <Link to="/dashboard">
+                    <LayoutDashboardIcon className="h-4 w-4" />
+                    <span>Dashboard</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
               {libraryItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
