@@ -1,6 +1,14 @@
-# Pocketly Frontend
+# Pocketly 
 
-A modern React-based web application for saving, organizing, and sharing links and resources - your personal second brain.
+> **[Changelog](./changelog.md) !**
+
+A web application for saving, organizing, and sharing links and resources - your personal second brain.
+
+
+
+[frontend](https://github.com/sahiwl/pocketly) is in React + TS
+
+[backend](https://github.com/sahiwl/pocketly-backend) is in Springboot + Postgresql
 
 ## Overview
 
