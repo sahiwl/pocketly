@@ -58,8 +58,7 @@ function App() {
             Waking up the server
           </h2>
           <p className="text-stone-500 leading-relaxed">
-            Server is starting up. This typically takes 30–60 seconds.
-            Have a cookie in the meantime 🍪
+            Server is starting up. This usually takes 30 to 60 seconds.
           </p>
         </div>
 

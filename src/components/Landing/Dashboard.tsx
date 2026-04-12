@@ -6,15 +6,6 @@ import {
 export default function Dashboard() {
   return (
     <div className="relative w-full max-w-5xl mx-auto">
-      <div className="mb-6 text-center">
-        <h3 className="text-xl font-semibold text-slate-900">
-          Your Personalized Knowledge Base
-        </h3>
-        <p className="text-sm text-slate-500 mt-1">
-          Available wherever you browse.
-        </p>
-      </div>
-
       <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xl shadow-slate-200/50 ring-1 ring-slate-950/5">
         {/* Window Header */}
         <div className="flex h-10 items-center justify-center border-b border-slate-100 bg-white px-4 relative">
