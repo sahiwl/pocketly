@@ -49,7 +49,7 @@ export const getAllLinks = async (): Promise<LinkResponseDTO[]> => {
 };
 
 export const bestatus = async (): Promise<unknown> => {
-  const resp = await api.get("/health");
+  const resp = await api.get("/ready");
   return resp.data;
 };
 

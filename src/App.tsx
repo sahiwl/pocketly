@@ -33,7 +33,7 @@ function App() {
       let alive = false;
       while (!alive) {
         try {
-          await axios.get(`${import.meta.env.VITE_APP_BASE}/health`);
+          await axios.get(`${import.meta.env.VITE_APP_BASE}/ready`);
           alive = true;
           setReady(true);
         } catch {
